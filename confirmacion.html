@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmación XV Años</title>
+<style>
+  body {
+    background-color: #fff0f5; /* rosa tenue */
+    font-family: 'Georgia', serif;
+    color: #c71585; /* rosa fuerte para textos */
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 28px;
+    color: #daa520; /* dorado */
+    margin-bottom: 20px;
+  }
+
+  select, input {
+    font-size: 16px;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #daa520;
+    width: 250px;
+  }
+
+  #confirmBtn {
+    background-color: #daa520;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  #confirmBtn:hover {
+    background-color: #c71585; /* rosa fuerte al pasar el mouse */
+  }
+
+  #pasesInfo, #mensajePreview {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  #mensajePreview {
+    font-style: italic;
+    color: #c71585;
+  }
+
+  label {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h2>Selecciona tu familia</h2>
+<select id="familiasSelect">
+  <option value="">Selecciona una familia</option>
+</select>
+
+<div id="pasesInfo" style="margin-top:10px; font-weight:bold;"></div>
+
+<div id="inputsConfirmacion" style="margin-top:10px;"></div>
+
+<button id="confirmBtn" style="margin-top:10px;">Confirmar por WhatsApp</button>
+
+<div id="mensajePreview" style="margin-top:10px; font-style:italic; color:blue;"></div>
+
+<script>
+  const pasesPorFamilia = {
+    "Familia González Rodriguez": { adultos: 3, niños: 0 },
+    "Familia Rodriguez Espinoza": { adultos: 2, niños: 0 },
+    "Familia Rodríguez Cabrera": { adultos: 2, niños: 0 },
+    "Familia Marín Rodriguez": { adultos: 2, niños: 1 },
+    "Señor Moisés": { adultos: 1, niños: 0 },
+    "Familia Aguila González": { adultos: 2, niños: 0 },
+    "Familia Aguila Campos": { adultos: 2, niños: 2 },
+    "Familia Velázquez Rodríguez": { adultos: 13, niños: 0 },
+    "Familia Sánchez Varela": { adultos: 4, niños: 0 },
+    "Familia González Sánchez": { adultos: 2, niños: 0 },
+    "Familia Sánchez González": { adultos: 2, niños: 1 },
+    "Familia Sánchez Rosales": { adultos: 3, niños: 1 },
+    "Familia Sánchez Venegas": { adultos: 3, niños: 0 },
+    "Familia González Collar": { adultos: 7, niños: 0 },
+    "Familia Ramón Verdín": { adultos: 5, niños: 0 },
+    "Familia García Federico": { adultos: 2, niños: 0 },
+    "Familia Rodríguez Ramírez": { adultos: 4, niños: 1 },
+    "Familia Rodriguez Ontiveros": { adultos: 2, niños: 2 },
+    "Familia Velázquez Bravo": { adultos: 3, niños: 0 },
+    "Karina Bravo y Héctor Zacarías": { adultos: 2, niños: 0 },
+    "Familia Doctor Osorio": { adultos: 2, niños: 0 },
+    "Familia Vargas Sánchez": { adultos: 4, niños: 0 },
+    "Señora Brenda": { adultos: 2, niños: 0 },
+    "Familia Huichin Sánchez": { adultos: 4, niños: 0 },
+    "Ale Zacarías": { adultos: 2, niños: 0 },
+    "Señora Rosa Isela": { adultos: 1, niños: 1 },
+    "Señora Garcitas": { adultos: 4, niños: 0 },
+    "Familia Clemente Ortuño": { adultos: 2, niños: 0 },
+    "Familia Beltrán Albarrán": { adultos: 4, niños: 0 },
+    "Señora Luzma": { adultos: 2, niños: 0 },
+    "Señora Yoselin": { adultos: 2, niños: 0 },
+    "Señora Veró": { adultos: 2, niños: 0 },
+    "Familia Castro Reyes": { adultos: 2, niños: 0 },
+    "Familia Anaya Cuervo": { adultos: 3, niños: 0 },
+    "Familia Brindis": { adultos: 2, niños: 0 },
+    "Señor René Presa": { adultos: 2, niños: 0 },
+    "Familia Moreno Téllez": { adultos: 2, niños: 0 },
+    "Señora Fany Ramírez": { adultos: 3, niños: 2 },
+    "Familia Cárdenas": { adultos: 4, niños: 0 },
+    "Familia Vasconcelos": { adultos: 5, niños: 0 },
+    "Familia Llanos": { adultos: 5, niños: 0 },
+    "Lupita cuoxiloa": { adultos: 1, niños: 0 },
+    "Mary López": { adultos: 1, niños: 0 },
+    "Crista": { adultos: 1, niños: 0 },
+    "Iram González": { adultos: 2, niños: 0 },
+    "Valentina": { adultos: 1, niños: 0 },
+    "Alexandra": { adultos: 1, niños: 0 },
+    "Pamela": { adultos: 2, niños: 0 },
+    "Diana": { adultos: 1, niños: 0 },
+    "Naomi Valderabano": { adultos: 1, niños: 0 },
+    "Sofía": { adultos: 1, niños: 0 },
+    "Naomi Carrillo": { adultos: 1, niños: 0 },
+    "Diego": { adultos: 1, niños: 0 },
+    "Hadassah": { adultos: 1, niños: 0 },
+    "Gian Karla": { adultos: 1, niños: 0 },
+    "Mitzu": { adultos: 1, niños: 0 }
+    // ... (agrega el resto aquí como ya lo tienes)
+  };
+
+  const select = document.getElementById("familiasSelect");
+  const pasesInfo = document.getElementById("pasesInfo");
+  const inputsConfirmacion = document.getElementById("inputsConfirmacion");
+  const confirmBtn = document.getElementById("confirmBtn");
+  const mensajePreview = document.getElementById("mensajePreview");
+
+  let mensajeActual = "";
+  let familiaSeleccionada = "";
+
+  // Llenar la lista de familias
+  for (const familia in pasesPorFamilia) {
+    const option = document.createElement("option");
+    option.value = familia;
+    option.textContent = familia;
+    select.appendChild(option);
+  }
+
+  // Mostrar información y permitir seleccionar cuántos asistirán
+  select.onchange = function () {
+    const familia = select.value;
+    familiaSeleccionada = familia;
+    mensajeActual = "";
+    mensajePreview.textContent = "";
+    inputsConfirmacion.innerHTML = "";
+
+    if (!familia) {
+      pasesInfo.textContent = "";
+      return;
+    }
+
+    const { adultos, niños } = pasesPorFamilia[familia];
+
+    pasesInfo.textContent = `Pases asignados: ${adultos} adultos, ${niños} niños`;
+
+    inputsConfirmacion.innerHTML = `
+      <label>¿Cuántos asistirán?</label><br>
+      <input type="number" id="adultosInput" min="0" max="${adultos}" value="${adultos}"> adulto(s)<br>
+      <input type="number" id="ninosInput" min="0" max="${niños}" value="${niños}"> niño(s)
+    `;
+
+    document.getElementById("adultosInput").addEventListener("input", actualizarMensaje);
+    document.getElementById("ninosInput").addEventListener("input", actualizarMensaje);
+
+    actualizarMensaje(); // generar mensaje inicial
+  };
+
+  function actualizarMensaje() {
+    const adultos = parseInt(document.getElementById("adultosInput")?.value || 0);
+    const ninos = parseInt(document.getElementById("ninosInput")?.value || 0);
+
+    if (!familiaSeleccionada) return;
+
+    mensajeActual = `Hola Naho, confirmamos la familia ${familiaSeleccionada} con ${adultos} pase(s) de adulto y ${ninos} pase(s) de niño. ¡Gracias!`;
+    mensajePreview.textContent = `Mensaje a enviar: "${mensajeActual}"`;
+  }
+
+  confirmBtn.onclick = function () {
+    if (!mensajeActual || !familiaSeleccionada) {
+      alert("Por favor selecciona una familia primero.");
+      return;
+    }
+
+    const { adultos: maxAdultos, niños: maxNinos } = pasesPorFamilia[familiaSeleccionada];
+    const adultosInput = parseInt(document.getElementById("adultosInput").value);
+    const ninosInput = parseInt(document.getElementById("ninosInput").value);
+
+    if (adultosInput > maxAdultos || ninosInput > maxNinos) {
+      alert("No puedes confirmar más pases de los que tienes asignados.");
+      return;
+    }
+
+    const numeroWhatsApp = "5212225253945"; // <-- Asegúrate de que esté en formato internacional
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeActual)}`;
+    window.open(urlWhatsApp, "_blank");
+  };
+</script>
+</body>
+</html>
