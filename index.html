@@ -5,6 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Invitación XV Años - Nahomi González Rodríguez</title>
 <style>
+
+.contenedor-encabezado {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.encabezado-img {
+    width: 100vw;
+    max-width: 100%;
+    display: block;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-encima {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Brush Script MT', cursive;
+    font-size: 48px;
+    color: #d63384;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 10px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
     body {
         font-family: 'Georgia', serif;
         text-align: center;
@@ -79,7 +111,33 @@
 </head>
 <body>
 
+<div class="contenedor-encabezado">
+  <img src="foto 4.jpg" alt="Foto encabezado" style="width: 95%; max-width: 800px; margin-top: 20px; border-radius: 10px;">
+
+<p style="
+    color: goldenrod;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+">
+    En agradecimiento a Dios, quiero compartir con ustedes la celebración de
+</p>
+
+<p style="
+    color: #d63384;
+    font-style: italic;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 48px;
+    margin-top: 0;
+    margin-bottom: 30px;
+">
+    Mis XV Años Nahomi
+</p>
+
 <img src="foto 1.jpg" alt="Foto principal" style="width:90%;max-width:500px;margin-top:20px;">
+
 <h1>Nahomi González Rodríguez</h1>
 
 <div class="contador">
@@ -91,7 +149,7 @@
 
 <div class="fotos-dobles">
     <img src="foto 2.jpg" alt="Foto secundaria 1">
-    <img src="foto 3.jpg" alt="Foto secundaria 2">
+    <img src="foto 5.jpg" alt="Foto secundaria 2">
 </div>
 
 <div>
@@ -106,6 +164,9 @@
 
     <p class="titulo">👗 Código de vestimenta:</p>
     <p class="info">Formal</p>
+
+    <p class="titulo">💖 Regalo:</p>
+    <p class="info">Lluvia de Sobres </p>
 </div>
 
 <p class="titulo">📌 Cómo llegar:</p>
@@ -120,7 +181,7 @@
 
 <script>
     function actualizarContador() {
-        const fechaEvento = new Date("September 20, 2025 19:00:00").getTime();
+        const fechaEvento = new Date("September 20, 2025 14:30:00").getTime();
         const ahora = new Date().getTime();
         const diferencia = fechaEvento - ahora;
 
@@ -138,7 +199,9 @@
     setInterval(actualizarContador, 1000);
     actualizarContador();
 </script>
+<p style="margin-top: 40px; font-size: 18px; color: goldenrod; font-style: italic; font-family: 'Georgia', serif;">
+  Agradecemos tu puntualidad y tu confirmacion. Nos vemos pronto!!!
+</p>
 
 </body>
-
 </html>
